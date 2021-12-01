@@ -7,7 +7,7 @@ const crawlNews = async () => {
   const categories = await Categories.find({})
   categories.forEach(async (category) => {
     let slug = category.slug
-    let feed = await parser.parseURL(`https://vnexpress.net/rss/${slug}.rss`)
+    let feed = await parser.parseURL(`https://vneshorts-api.herokuapp.com/rss/${slug}.rss`)
     feed.items.forEach(async (item) => {
       const existsLink = await News.findOne({ link: item.link })
       if (!existsLink) {
